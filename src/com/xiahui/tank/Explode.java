@@ -1,5 +1,7 @@
 package com.xiahui.tank;
 
+import com.xiahui.tank.abstractfactory.BaseExplode;
+
 import java.awt.*;
 
 /**
@@ -8,12 +10,10 @@ import java.awt.*;
  * @Description: com.xiahui.tank
  * @version: 1.0
  */
-public class Explode {
+public class Explode extends BaseExplode{
 	private int x, y;
 	private TankFrame tankFrame;
 	public int step = 0;
-	public int EXPLODE_WIDTH = ResourceMgr.fireImages[0].getWidth();
-	public int EXPLODE_HEIGHT = ResourceMgr.fireImages[0].getHeight();
 
 	public Explode(int x, int y, TankFrame tankFrame) {
 		x = x + ResourceMgr.goodTankU.getWidth() / 2 - EXPLODE_WIDTH / 2;

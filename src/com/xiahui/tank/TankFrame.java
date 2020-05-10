@@ -1,5 +1,7 @@
 package com.xiahui.tank;
 
+import com.xiahui.tank.abstractfactory.*;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -17,13 +19,12 @@ import java.util.List;
 public class TankFrame extends Frame {
 
 	private Tank tank = new Tank(200, 400, Dir.UP, this, Group.GOOD, false);
-	//public Bullet bullet = new Bullet(300, 300, Dir.DOWN);
-	List<Bullet> bullets = new ArrayList<Bullet>();
-	List<Tank> tanks = new ArrayList<>();
-//	Explode explode = new Explode(650,300,this);
-	List<Explode> explodes = new ArrayList<>();
-
-	static final int GAME_WIDTH = 1000, GAME_HEIGHT = 800;
+	public List<BaseBullet> bullets = new ArrayList<BaseBullet>();
+	public List<BaseTank> tanks = new ArrayList<BaseTank>();
+	public List<BaseExplode> explodes = new ArrayList<BaseExplode>();
+	public GameFactory gameFactory = new DefaultFactory();
+//	public GameFactory gameFactory = new RectFactory();
+	public static final int GAME_WIDTH = 1000, GAME_HEIGHT = 800;
 
 	public TankFrame() {
 		setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -50,10 +51,9 @@ public class TankFrame extends Frame {
 		g.drawString("爆炸的数目:" + explodes.size(), 20, 130);
 
 		g.setColor(blackColor);
-		Color color = g.getColor();
 		g.setColor(Color.YELLOW);
 		tank.paint(g);
-		g.setColor(color);
+		g.setColor(blackColor);
 
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(g);
@@ -78,7 +78,7 @@ public class TankFrame extends Frame {
 
 //		for(Iterator<Bullet> iterator = bullets.iterator();iterator.hasNext();){
 //			Bullet bullet = iterator.next();
-//			if (!bullet.live){
+//			if (!bullet.living){
 //				bullets.remove(bullet);
 //			}
 //		}

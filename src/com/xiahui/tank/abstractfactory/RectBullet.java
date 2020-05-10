@@ -1,25 +1,17 @@
-package com.xiahui.tank;
+package com.xiahui.tank.abstractfactory;
 
-import com.xiahui.tank.abstractfactory.BaseBullet;
-import com.xiahui.tank.abstractfactory.BaseTank;
+import com.xiahui.tank.*;
 
 import java.awt.*;
 
-/**
- * @Auther: http://www.maisui.com
- * @Date: 2020/4/22
- * @Description: com.xiahui.tank
- * @version: 1.0
- */
-public class Bullet extends BaseBullet{
-	private int x = 300, y = 300;
-	private Dir dir = Dir.DOWN;
-	private static final int SPEED = 8;
-
-	private TankFrame tankFrame = null;
+public class RectBullet extends BaseBullet {
+	private static final int SPEED = 6;
+	private int x, y;
+	private Dir dir;
+	public TankFrame tf = null;
 	private Group group = Group.BAD;
 
-	public Bullet(int x, int y, Dir dir, TankFrame tankFrame, Group group) {
+	public RectBullet(int x, int y, Dir dir, TankFrame tf, Group group) {
 		switch (dir) {
 			case UP:
 				BULLET_WIDTH = ResourceMgr.bulletU.getWidth();
@@ -49,7 +41,7 @@ public class Bullet extends BaseBullet{
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
-		this.tankFrame = tankFrame;
+		this.tf = tf;
 		this.group = group;
 
 		rect.x = this.x;
@@ -57,77 +49,67 @@ public class Bullet extends BaseBullet{
 		rect.width = this.BULLET_WIDTH;
 		rect.height = this.BULLET_HEIGTH;
 
-		this.tankFrame.bullets.add(this);
+		tf.bullets.add(this);
+
 	}
 
-	public Dir getDir() {
-		return dir;
+	public Group getGroup() {
+		return group;
 	}
 
-	public void setDir(Dir dir) {
-		this.dir = dir;
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	public void paint(Graphics g) {
 		if (!living) {
-			tankFrame.bullets.remove(this);
+			tf.bullets.remove(this);
 		}
-		switch (dir) {
-			case LEFT:
-				g.drawImage(ResourceMgr.bulletL, x, y, null);
-				break;
-			case RIGHT:
-				g.drawImage(ResourceMgr.bulletR, x, y, null);
-				break;
-			case UP:
-				g.drawImage(ResourceMgr.bulletU, x, y, null);
-				break;
-			case DOWN:
-				g.drawImage(ResourceMgr.bulletD, x, y, null);
-				break;
-		}
+
+		Color c = g.getColor();
+		g.setColor(Color.YELLOW);
+		g.fillRect(x, y, BULLET_WIDTH, BULLET_HEIGTH);
+		g.setColor(c);
+
 		move();
 	}
 
-
-	public void move() {
+	@SuppressWarnings("all")
+	private void move() {
 		switch (dir) {
-			case UP:
-				y -= SPEED;
-				break;
-			case DOWN:
-				y += SPEED;
-				break;
 			case LEFT:
 				x -= SPEED;
+				break;
+			case UP:
+				y -= SPEED;
 				break;
 			case RIGHT:
 				x += SPEED;
 				break;
-			default:
+			case DOWN:
+				y += SPEED;
 				break;
 		}
 
+		//update rect
 		rect.x = this.x;
 		rect.y = this.y;
 		rect.width = this.BULLET_WIDTH;
 		rect.height = this.BULLET_HEIGTH;
 
-		if (x < 0 || y < 0 || x > tankFrame.GAME_WIDTH || y > tankFrame.GAME_HEIGHT) {
-			this.living = false;
-		}
+		if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) living = false;
+
 	}
 
-
 	public void collideWith(BaseTank tank) {
-		if (this.group == tank.getGroup()) {
-			return;
-		}
-		//碰撞检测优化
+		if (this.group == tank.getGroup()) return;
+
 		if (rect.intersects(tank.rect)) {
 			this.living = false;
 			tank.living = false;
-			tankFrame.explodes.add(tankFrame.gameFactory.createExplode(tank.getX(), tank.getY(), tankFrame));
+			tf.explodes.add(tf.gameFactory.createExplode(tank.getX(), tank.getY(), tf));
 		}
+
 	}
+
 }

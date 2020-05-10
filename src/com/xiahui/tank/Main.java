@@ -1,5 +1,7 @@
 package com.xiahui.tank;
 
+import com.xiahui.tank.abstractfactory.BaseTank;
+
 /**
  * @Auther: http://www.maisui.com
  * @Date: 2020/4/21
@@ -9,10 +11,11 @@ package com.xiahui.tank;
 public class Main {
 	public static void main(String[] arr) {
 		TankFrame tankFrame = new TankFrame();
-		int initTankCount = Integer.parseInt((String)PropertyMsr.getValue("initTankCount"));
+		int initTankCount = Integer.parseInt((String) PropertyMsr.getValue("initTankCount"));
 		//初始化敌方坦克
 		for (int i = 0; i < initTankCount; i++) {
-			tankFrame.tanks.add(new Tank(100 + i * 90, 200, Dir.DOWN, tankFrame, Group.BAD, true));
+			BaseTank tank = tankFrame.gameFactory.createTank(100 + i * 90, 200, Dir.DOWN, Group.BAD, tankFrame, true);
+			tankFrame.tanks.add(tank);
 		}
 
 		while (true) {

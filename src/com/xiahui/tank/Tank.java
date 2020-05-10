@@ -1,8 +1,8 @@
 package com.xiahui.tank;
 
+import com.xiahui.tank.abstractfactory.BaseTank;
+
 import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Properties;
 import java.util.Random;
 
 /**
@@ -11,26 +11,17 @@ import java.util.Random;
  * @Description: com.xiahui.tank
  * @version: 1.0
  */
-public class Tank {
+public class Tank extends BaseTank{
 	int x = 200, y = 400;
 	Dir dir = Dir.UP;
 	final int SPEED = 2;
 	//是否静止
 	private boolean moving = true;
 	TankFrame tankFrame = null;
-	private int Tank_Width;
-	private int Tank_Height;
-	public boolean live = true;
-	private Random random = new Random();
-	Group group = Group.BAD;
 
-	Rectangle rect = new Rectangle();
+	private Random random = new Random();
 
 	FireStrategy fireStrategy = new DefaultFireStrategy();
-
-	public Group getGroup() {
-		return group;
-	}
 
 	public void setGroup(Group group) {
 		this.group = group;
@@ -53,19 +44,19 @@ public class Tank {
 	}
 
 	public int getTank_Width() {
-		return Tank_Width;
+		return TANK_WIDTH;
 	}
 
 	public void setTank_Width(int tank_Width) {
-		Tank_Width = tank_Width;
+		TANK_WIDTH = tank_Width;
 	}
 
 	public int getTank_Height() {
-		return Tank_Height;
+		return TANK_HEIGHT;
 	}
 
 	public void setTank_Height(int tank_Height) {
-		Tank_Height = tank_Height;
+		TANK_HEIGHT = tank_Height;
 	}
 
 	public Tank(int x, int y, Dir dir, TankFrame tankFrame, Group group, boolean moving) {
@@ -78,8 +69,8 @@ public class Tank {
 
 		rect.x = this.x;
 		rect.y = this.y;
-		rect.width = Tank_Width;
-		rect.height = Tank_Height;
+		rect.width = TANK_WIDTH;
+		rect.height = TANK_HEIGHT;
 
 		if (Group.GOOD == this.group){
 			String fourFireStrategy = String.valueOf(PropertyMsr.getValue("fourFireStrategy"));
@@ -101,28 +92,28 @@ public class Tank {
 	}
 
 	public void paint(Graphics g) {
-		if (!live) {
+		if (!living) {
 			tankFrame.tanks.remove(this);
 		}
 		switch (dir) {
 			case LEFT:
-				Tank_Width = ResourceMgr.goodTankL.getWidth();
-				Tank_Height = ResourceMgr.goodTankL.getHeight();
+				TANK_WIDTH = ResourceMgr.goodTankL.getWidth();
+				TANK_HEIGHT = ResourceMgr.goodTankL.getHeight();
 				g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankL : ResourceMgr.badTankL, x, y, null);
 				break;
 			case RIGHT:
-				Tank_Width = ResourceMgr.goodTankR.getWidth();
-				Tank_Height = ResourceMgr.goodTankR.getHeight();
+				TANK_WIDTH = ResourceMgr.goodTankR.getWidth();
+				TANK_HEIGHT = ResourceMgr.goodTankR.getHeight();
 				g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankR : ResourceMgr.badTankR, x, y, null);
 				break;
 			case UP:
-				Tank_Width = ResourceMgr.goodTankU.getWidth();
-				Tank_Height = ResourceMgr.goodTankU.getHeight();
+				TANK_WIDTH = ResourceMgr.goodTankU.getWidth();
+				TANK_HEIGHT = ResourceMgr.goodTankU.getHeight();
 				g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankU : ResourceMgr.badTankU, x, y, null);
 				break;
 			case DOWN:
-				Tank_Width = ResourceMgr.goodTankD.getWidth();
-				Tank_Height = ResourceMgr.goodTankD.getHeight();
+				TANK_WIDTH = ResourceMgr.goodTankD.getWidth();
+				TANK_HEIGHT = ResourceMgr.goodTankD.getHeight();
 				g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankD : ResourceMgr.badTankD, x, y, null);
 				break;
 		}
@@ -160,16 +151,17 @@ public class Tank {
 		//update rect
 		rect.x = this.x;
 		rect.y = this.y;
-		rect.width = Tank_Width;
-		rect.height = Tank_Height;
+		rect.width = TANK_WIDTH;
+		rect.height = TANK_HEIGHT;
+
 	}
 
 	//边界检测
 	private void boundsCheck() {
 		if (this.x < 2) x = 2;
 		else if (this.y < 28) y = 28;
-		else if (this.x > TankFrame.GAME_WIDTH - Tank_Width - 2) x = TankFrame.GAME_WIDTH - Tank_Width - 2;
-		else if (this.y > TankFrame.GAME_HEIGHT - Tank_Height -2) y = TankFrame.GAME_HEIGHT - Tank_Height -2;
+		else if (this.x > TankFrame.GAME_WIDTH - TANK_WIDTH - 2) x = TankFrame.GAME_WIDTH - TANK_WIDTH - 2;
+		else if (this.y > TankFrame.GAME_HEIGHT - TANK_HEIGHT -2) y = TankFrame.GAME_HEIGHT - TANK_HEIGHT -2;
 	}
 
 	private void randomDir() {
@@ -181,6 +173,15 @@ public class Tank {
 	}
 
 	public void fire() {
-		fireStrategy.fire(this);
+		//策略者模式
+		//fireStrategy.fire(this);
+		if(this.group == Group.BAD){
+			tankFrame.gameFactory.createBullet(this.x, this.y, dir, this.group, this.tankFrame);
+			return;
+		}
+		Dir[] dirs = Dir.values();
+		for (Dir dir : dirs) {
+			tankFrame.gameFactory.createBullet(this.x, this.y, dir, this.group, this.tankFrame);
+		}
 	}
 }
