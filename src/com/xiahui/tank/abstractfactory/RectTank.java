@@ -15,6 +15,7 @@ public class RectTank extends BaseTank {
 	private boolean moving = true;
 	TankFrame tf = null;
 
+
 	public RectTank(int x, int y, Dir dir, Group group, TankFrame tf, boolean moving) {
 		this.x = x;
 		this.y = y;

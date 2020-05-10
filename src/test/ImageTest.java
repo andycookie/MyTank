@@ -4,10 +4,10 @@ package test;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * @Auther: http://www.maisui.com
@@ -15,7 +15,9 @@ import java.io.IOException;
  * @Description: test
  * @version: 1.0
  */
-public class ImageTest {
+public class ImageTest implements Serializable {
+
+	private static final long serialVersionUID = -915689694955998539L;
 
 	@Test
 	public void test(){
