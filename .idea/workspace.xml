@@ -14,9 +14,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9c21623-eec6-4e26-a60c-01d0082998ed" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/java/com/pingan/Animal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/java/com/pingan/xiahui.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/webapp/Hello.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/webapp/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/test/java/com/pingan/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/HelloWorld/src/Hello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/abstractfactory/RectTank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/abstractfactory/RectTank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ImageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ImageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/TankFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/TankFrame.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -277,40 +283,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/ImageTest.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/ImageTest.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/xiahui/tank/Bullet.java</url>
-          <line>122</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/xiahui/tank/abstractfactory/RectExplode.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>ResourceMgr.goodTankU.getWidth()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>

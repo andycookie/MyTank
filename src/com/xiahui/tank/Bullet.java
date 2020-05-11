@@ -120,9 +120,7 @@ public class Bullet extends BaseBullet{
 
 
 	public void collideWith(BaseTank tank) {
-		if (this.group == tank.getGroup()) {
-			return;
-		}
+		if (this.group == tank.getGroup())  return;
 		//碰撞检测优化
 		if (rect.intersects(tank.rect)) {
 			this.living = false;
