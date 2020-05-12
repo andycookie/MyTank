@@ -5,8 +5,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Auther: http://www.maisui.com
@@ -16,12 +14,7 @@ import java.util.List;
  */
 public class TankFrame extends Frame {
 
-	private Tank tank = new Tank(200, 400, Dir.UP, this, Group.GOOD, false);
-	//public Bullet bullet = new Bullet(300, 300, Dir.DOWN);
-	List<Bullet> bullets = new ArrayList<Bullet>();
-	List<Tank> tanks = new ArrayList<>();
-//	Explode explode = new Explode(650,300,this);
-	List<Explode> explodes = new ArrayList<>();
+	GameModel gameModel = new GameModel();
 
 	static final int GAME_WIDTH = 1000, GAME_HEIGHT = 800;
 
@@ -42,46 +35,7 @@ public class TankFrame extends Frame {
 
 	@Override
 	public void paint(Graphics g) {
-		Color blackColor = g.getColor();
-		g.setColor(Color.white);
-		g.setFont(new Font("宋体", Font.BOLD, 18));
-		g.drawString("剩余的子弹数目:" + bullets.size(), 20, 90);
-		g.drawString("剩余的敌方坦克数目:" + tanks.size(), 20, 110);
-		g.drawString("爆炸的数目:" + explodes.size(), 20, 130);
-
-		g.setColor(blackColor);
-		Color color = g.getColor();
-		g.setColor(Color.YELLOW);
-		tank.paint(g);
-		g.setColor(color);
-
-		for (int i = 0; i < bullets.size(); i++) {
-			bullets.get(i).paint(g);
-		}
-
-		for (int i = 0; i < tanks.size(); i++) {
-			tanks.get(i).paint(g);
-		}
-		for (int i = 0; i < explodes.size(); i++) {
-			explodes.get(i).paint(g);
-		}
-		//碰撞检测
-		for (int i = 0; i < bullets.size(); i++) {
-			for (int j = 0; j < tanks.size(); j++) {
-				bullets.get(i).collideWith(tanks.get(j));
-			}
-		}
-
-//		if (explode.step == 0){
-//			new Audio("audio/explode.wav").start();
-//		}
-
-//		for(Iterator<Bullet> iterator = bullets.iterator();iterator.hasNext();){
-//			Bullet bullet = iterator.next();
-//			if (!bullet.live){
-//				bullets.remove(bullet);
-//			}
-//		}
+		gameModel.paint(g);
 	}
 
 	Image offScreenImage = null;
@@ -146,7 +100,7 @@ public class TankFrame extends Frame {
 					bR = false;
 					break;
 				case KeyEvent.VK_CONTROL:
-					tank.fire();
+					gameModel.getMainTank().fire();
 					break;
 				default:
 					System.out.println("抬起...");
@@ -155,6 +109,7 @@ public class TankFrame extends Frame {
 		}
 
 		private void setMainTankDir() {
+			Tank tank = gameModel.getMainTank();
 			if (!bU && !bD && !bL && !bR) {
 				tank.setMoving(false);
 			} else {

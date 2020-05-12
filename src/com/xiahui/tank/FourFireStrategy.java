@@ -12,7 +12,7 @@ public class FourFireStrategy implements FireStrategy {
 	public void fire(Tank tank) {
 		Dir[] values = Dir.values();
 		for (Dir dir : values) {
-			new Bullet(tank.x, tank.y, dir, tank.tankFrame, tank.group);
+			new Bullet(tank.x, tank.y, dir, tank.gameModel, tank.group);
 		}
 	}
 }

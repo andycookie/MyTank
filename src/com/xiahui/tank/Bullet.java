@@ -1,5 +1,6 @@
 package com.xiahui.tank;
 
+
 import java.awt.*;
 
 /**
@@ -15,13 +16,13 @@ public class Bullet {
 	public int BULLET_WIDTH;
 	public int BULLET_HEIGTH;
 
-	private TankFrame tankFrame = null;
 	public boolean live = true;
 	private Group group = Group.BAD;
+	GameModel gameModel = new GameModel();
 
 	Rectangle rect = new Rectangle();
 
-	public Bullet(int x, int y, Dir dir, TankFrame tankFrame, Group group) {
+	public Bullet(int x, int y, Dir dir, GameModel gameModel, Group group) {
 		switch (dir) {
 			case UP:
 				BULLET_WIDTH = ResourceMgr.bulletU.getWidth();
@@ -51,7 +52,7 @@ public class Bullet {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
-		this.tankFrame = tankFrame;
+		this.gameModel = gameModel;
 		this.group = group;
 
 		rect.x = this.x;
@@ -59,7 +60,7 @@ public class Bullet {
 		rect.width = this.BULLET_WIDTH;
 		rect.height = this.BULLET_HEIGTH;
 
-		this.tankFrame.bullets.add(this);
+		this.gameModel.bullets.add(this);
 	}
 
 	public Dir getDir() {
@@ -72,7 +73,7 @@ public class Bullet {
 
 	public void paint(Graphics g) {
 		if (!live) {
-			tankFrame.bullets.remove(this);
+			gameModel.bullets.remove(this);
 		}
 		switch (dir) {
 			case LEFT:
@@ -115,7 +116,7 @@ public class Bullet {
 		rect.width = this.BULLET_WIDTH;
 		rect.height = this.BULLET_HEIGTH;
 
-		if (x < 0 || y < 0 || x > tankFrame.GAME_WIDTH || y > tankFrame.GAME_HEIGHT) {
+		if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
 			this.live = false;
 		}
 	}
@@ -131,7 +132,7 @@ public class Bullet {
 		if (rect.intersects(tank.rect)) {
 			this.live = false;
 			tank.live = false;
-			tankFrame.explodes.add(new Explode(tank.getX(), tank.getY(), tankFrame));
+			gameModel.explodes.add(new Explode(tank.getX(), tank.getY(), gameModel));
 		}
 	}
 }

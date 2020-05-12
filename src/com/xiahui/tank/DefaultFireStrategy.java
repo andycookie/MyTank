@@ -10,6 +10,6 @@ public class DefaultFireStrategy implements FireStrategy{
 
 	@Override
 	public void fire(Tank tank) {
-		new Bullet(tank.x, tank.y, tank.dir, tank.tankFrame, tank.group);
+		new Bullet(tank.x, tank.y, tank.dir, tank.gameModel, tank.group);
 	}
 }

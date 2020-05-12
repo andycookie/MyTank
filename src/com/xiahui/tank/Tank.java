@@ -1,8 +1,6 @@
 package com.xiahui.tank;
 
 import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Properties;
 import java.util.Random;
 
 /**
@@ -17,7 +15,6 @@ public class Tank {
 	final int SPEED = 2;
 	//是否静止
 	private boolean moving = true;
-	TankFrame tankFrame = null;
 	private int Tank_Width;
 	private int Tank_Height;
 	public boolean live = true;
@@ -68,11 +65,13 @@ public class Tank {
 		Tank_Height = tank_Height;
 	}
 
-	public Tank(int x, int y, Dir dir, TankFrame tankFrame, Group group, boolean moving) {
+	GameModel gameModel;
+
+	public Tank(int x, int y, Dir dir, GameModel gameModel, Group group, boolean moving) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
-		this.tankFrame = tankFrame;
+		this.gameModel = gameModel;
 		this.group = group;
 		this.moving = moving;
 
@@ -81,12 +80,12 @@ public class Tank {
 		rect.width = Tank_Width;
 		rect.height = Tank_Height;
 
-		if (Group.GOOD == this.group){
+		if (Group.GOOD == this.group) {
 			String fourFireStrategy = String.valueOf(PropertyMsr.getValue("fourFireStrategy"));
 
 			try {
 				fireStrategy = (FireStrategy) Class.forName(fourFireStrategy).getDeclaredConstructor().newInstance();
-			} catch (Exception e){
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -102,7 +101,7 @@ public class Tank {
 
 	public void paint(Graphics g) {
 		if (!live) {
-			tankFrame.tanks.remove(this);
+			gameModel.tanks.remove(this);
 		}
 		switch (dir) {
 			case LEFT:
@@ -169,7 +168,7 @@ public class Tank {
 		if (this.x < 2) x = 2;
 		else if (this.y < 28) y = 28;
 		else if (this.x > TankFrame.GAME_WIDTH - Tank_Width - 2) x = TankFrame.GAME_WIDTH - Tank_Width - 2;
-		else if (this.y > TankFrame.GAME_HEIGHT - Tank_Height -2) y = TankFrame.GAME_HEIGHT - Tank_Height -2;
+		else if (this.y > TankFrame.GAME_HEIGHT - Tank_Height - 2) y = TankFrame.GAME_HEIGHT - Tank_Height - 2;
 	}
 
 	private void randomDir() {
