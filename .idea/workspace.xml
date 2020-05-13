@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a9c21623-eec6-4e26-a60c-01d0082998ed" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/GameModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/GameObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/BulletTankCollider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/Collider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/ColliderChain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/TankTankCollider.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/java/com/pingan/Animal.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/java/com/pingan/xiahui.xml" afterDir="false" />
@@ -11,13 +15,11 @@
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/webapp/index.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/test/java/com/pingan/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/HelloWorld/src/Hello.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/DefaultFireStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/DefaultFireStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Explode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Explode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/FourFireStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/FourFireStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/GameModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Tank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/TankFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/TankFrame.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +76,7 @@
   <component name="ProjectId" id="1bluLwdJStgXPAqMbjUdXSoCY5W" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />

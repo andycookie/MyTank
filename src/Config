@@ -1,4 +1,4 @@
-initTankCount=10
+initTankCount=5
 
 defaultFireStratrgy=com.xiahui.tank.DefaultFireStrategy
 fourFireStrategy=com.xiahui.tank.FourFireStrategy

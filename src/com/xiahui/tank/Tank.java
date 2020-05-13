@@ -9,10 +9,11 @@ import java.util.Random;
  * @Description: com.xiahui.tank
  * @version: 1.0
  */
-public class Tank {
+public class Tank extends GameObject {
 	int x = 200, y = 400;
+	int preX = 200, preY = 400;
 	Dir dir = Dir.UP;
-	final int SPEED = 2;
+	final int SPEED = 5;
 	//是否静止
 	private boolean moving = true;
 	private int Tank_Width;
@@ -21,7 +22,7 @@ public class Tank {
 	private Random random = new Random();
 	Group group = Group.BAD;
 
-	Rectangle rect = new Rectangle();
+	public Rectangle rect = new Rectangle();
 
 	FireStrategy fireStrategy = new DefaultFireStrategy();
 
@@ -101,7 +102,7 @@ public class Tank {
 
 	public void paint(Graphics g) {
 		if (!live) {
-			gameModel.tanks.remove(this);
+			gameModel.gameObjects.remove(this);
 		}
 		switch (dir) {
 			case LEFT:
@@ -131,6 +132,8 @@ public class Tank {
 	}
 
 	public void move() {
+		preX = x;
+		preY = y;
 		switch (dir) {
 			case UP:
 				y -= SPEED;
@@ -181,5 +184,17 @@ public class Tank {
 
 	public void fire() {
 		fireStrategy.fire(this);
+	}
+
+	public boolean collideWith(Tank tank) {
+		if (rect.intersects(tank.rect)) {
+			this.x = this.preX;
+			this.y = this.preY;
+			tank.x = tank.preX;
+			tank.y = tank.preY;
+			return true;
+		}
+
+		return false;
 	}
 }

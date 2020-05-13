@@ -8,7 +8,7 @@ import java.awt.*;
  * @Description: com.xiahui.tank
  * @version: 1.0
  */
-public class Explode {
+public class Explode extends GameObject {
 	private int x, y;
 	private GameModel gameModel;
 	public int step = 0;
@@ -26,7 +26,7 @@ public class Explode {
 	public void paint(Graphics g) {
 		g.drawImage(ResourceMgr.fireImages[step++], x, y, null);
 		if (step == ResourceMgr.fireImages.length) {
-			gameModel.explodes.remove(this);
+			gameModel.gameObjects.remove(this);
 		}
 	}
 }

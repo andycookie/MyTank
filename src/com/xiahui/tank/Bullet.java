@@ -9,7 +9,7 @@ import java.awt.*;
  * @Description: com.xiahui.tank
  * @version: 1.0
  */
-public class Bullet {
+public class Bullet extends GameObject {
 	private int x = 300, y = 300;
 	private Dir dir = Dir.DOWN;
 	private static final int SPEED = 8;
@@ -20,7 +20,7 @@ public class Bullet {
 	private Group group = Group.BAD;
 	GameModel gameModel = new GameModel();
 
-	Rectangle rect = new Rectangle();
+	public Rectangle rect = new Rectangle();
 
 	public Bullet(int x, int y, Dir dir, GameModel gameModel, Group group) {
 		switch (dir) {
@@ -60,7 +60,7 @@ public class Bullet {
 		rect.width = this.BULLET_WIDTH;
 		rect.height = this.BULLET_HEIGTH;
 
-		this.gameModel.bullets.add(this);
+		this.gameModel.gameObjects.add(this);
 	}
 
 	public Dir getDir() {
@@ -73,7 +73,7 @@ public class Bullet {
 
 	public void paint(Graphics g) {
 		if (!live) {
-			gameModel.bullets.remove(this);
+			gameModel.gameObjects.remove(this);
 		}
 		switch (dir) {
 			case LEFT:
@@ -122,17 +122,19 @@ public class Bullet {
 	}
 
 
-	public void collideWith(Tank tank) {
-		if (this.group == tank.getGroup()) {
-			return;
-		}
+	public boolean collideWith(Tank tank) {
 		//碰撞检测优化
-//		Rectangle bulletR = new Rectangle(this.x, this.y, BULLET_WIDTH, BULLET_HEIGTH);
-//		Rectangle tankR = new Rectangle(tank.getX(), tank.getY(), tank.getTank_Width(), tank.getTank_Height());
+		if (this.group == tank.getGroup()) {
+			return false;
+		}
+
 		if (rect.intersects(tank.rect)) {
 			this.live = false;
 			tank.live = false;
-			gameModel.explodes.add(new Explode(tank.getX(), tank.getY(), gameModel));
+			gameModel.gameObjects.add(new Explode(tank.getX(), tank.getY(), gameModel));
+			return true;
 		}
+
+		return false;
 	}
 }
