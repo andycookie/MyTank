@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a9c21623-eec6-4e26-a60c-01d0082998ed" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/GameObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/BulletTankCollider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/Collider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/ColliderChain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/TankTankCollider.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/java/com/pingan/Animal.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/java/com/pingan/xiahui.xml" afterDir="false" />
@@ -15,11 +10,9 @@
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/main/webapp/index.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/CNBS/CDTS/src/test/java/com/pingan/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/HelloWorld/src/Hello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Config" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Explode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Explode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/GameModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/Tank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xiahui/tank/collider/ColliderChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/xiahui/tank/collider/ColliderChain.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -226,6 +219,8 @@
       <workItem from="1588685985802" duration="2048000" />
       <workItem from="1589218950379" duration="268000" />
       <workItem from="1589295606674" duration="4303000" />
+      <workItem from="1589603666324" duration="3640000" />
+      <workItem from="1589692868457" duration="2207000" />
     </task>
     <servers />
   </component>
@@ -276,6 +271,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/xiahui/tank/GameModel.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="masterDetails">
     <states>

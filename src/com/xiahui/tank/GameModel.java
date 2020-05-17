@@ -21,6 +21,8 @@ public class GameModel {
 	ColliderChain colliderChain = new ColliderChain();
 
 	public GameModel() {
+		gameObjects.add(tank);
+
 		int initTankCount = Integer.parseInt((String) PropertyMsr.getValue("initTankCount"));
 		//初始化敌方坦克
 		for (int i = 0; i < initTankCount; i++) {
@@ -39,23 +41,20 @@ public class GameModel {
 		g.setColor(blackColor);
 		Color color = g.getColor();
 		g.setColor(Color.YELLOW);
-		tank.paint(g);
-		g.setColor(color);
+		//tank.paint(g);
+
 
 		for (int i = 0; i < gameObjects.size(); i++) {
 			gameObjects.get(i).paint(g);
 		}
+		g.setColor(color);
+
 		//碰撞检测
 		for (int i = 0; i < gameObjects.size(); i++) {
 			for (int j = i + 1; j < gameObjects.size(); j++) {
 				colliderChain.collideWith(gameObjects.get(i),gameObjects.get(j));
 			}
 		}
-//		for (int i = 0; i < bullets.size(); i++) {
-//			for (int j = 0; j < tanks.size(); j++) {
-//				bullets.get(i).collideWith(tanks.get(j));
-//			}
-//		}
 	}
 
 	public Tank getMainTank() {

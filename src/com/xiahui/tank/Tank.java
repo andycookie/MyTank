@@ -11,18 +11,21 @@ import java.util.Random;
  */
 public class Tank extends GameObject {
 	int x = 200, y = 400;
-	int preX = 200, preY = 400;
+	int preX = x, preY = y;
 	Dir dir = Dir.UP;
 	final int SPEED = 5;
 	//是否静止
 	private boolean moving = true;
-	private int Tank_Width;
-	private int Tank_Height;
+	private int Tank_Width = ResourceMgr.goodTankU.getWidth();
+	private int Tank_Height = ResourceMgr.goodTankU.getHeight();
+
 	public boolean live = true;
 	private Random random = new Random();
 	Group group = Group.BAD;
 
 	public Rectangle rect = new Rectangle();
+
+	GameModel gameModel;
 
 	FireStrategy fireStrategy = new DefaultFireStrategy();
 
@@ -66,8 +69,6 @@ public class Tank extends GameObject {
 		Tank_Height = tank_Height;
 	}
 
-	GameModel gameModel;
-
 	public Tank(int x, int y, Dir dir, GameModel gameModel, Group group, boolean moving) {
 		this.x = x;
 		this.y = y;
@@ -78,6 +79,9 @@ public class Tank extends GameObject {
 
 		rect.x = this.x;
 		rect.y = this.y;
+		/**
+		 * 初始化后,如果没有移动,tank的width/height是不会变化的. 所以要有显示初始化值
+		 */
 		rect.width = Tank_Width;
 		rect.height = Tank_Height;
 

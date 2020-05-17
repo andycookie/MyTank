@@ -25,7 +25,7 @@ public class ColliderChain implements Collider{
 	}
 
 	/**
-	 * true:碰撞
+	 * true:碰撞  撞了就结束循环
 	 * fasle:未碰撞
 	 *
 	 * @param o1
